@@ -1,19 +1,57 @@
-
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+from datetime import datetime
 
-def feature_engineering_step1(data):
-    '''Example feature engineering step 1.'''
-    # Example: Create a new feature based on existing data
-    data['new_feature'] = data['existing_feature'] * 2
+# Define the function that cleans the player traits variable
+def clean_player_traits(data):
+    def clean_traits(x):
+        if isinstance(x, str):
+            return x.split(',')
+        else:
+            return x
+
+    data['player_traits'] = data['player_traits'].apply(clean_traits)
     return data
 
-def feature_engineering_step2(data):
-    '''Example feature engineering step 2.'''
-    # Example: Create another feature
-    data['another_feature'] = data['existing_feature'] / data['another_existing_feature']
+# Define the function to clean body type
+def clean_body_type(data):
+    def extract_bodytype(bodytype_string):
+        return bodytype_string.split()[0]
+
+    data['body_type'] = data['body_type'].apply(extract_bodytype)
     return data
 
-# ... Additional feature engineering functions ...
+
+# Define the function to process work rate and have it as a categorical variable (separating attacking and defensive wr)
+def process_work_rate(data):
+    def wr_converter(wr):
+        if wr == 'High':
+            return 3
+        if wr == 'Medium':
+            return 2
+        if wr == 'Low':
+            return 1
+
+    data['attacking_wr'] = data['work_rate'].apply(lambda x: wr_converter(x.split('/')[0]))
+    data['defensive_wr'] = data['work_rate'].apply(lambda x: wr_converter(x.split('/')[1]))
+    
+    return data
+
+
+# Define the function to calculate years until contract expires
+def calculate_years_until_expiry(data):
+    data['years_until_contract_expires'] = data['club_contract_valid_until'] - datetime.today().year
+    return data
+
+
+# Define the function to calculate age
+def calculate_age(data):
+    reference_date = datetime.now()
+    data['age'] = (reference_date - pd.to_datetime(data['birthday_date'])).dt.days // 365
+    return data
+
+
+# Define the function to calculate years in the club
+def calculate_years_in_club(data):
+    reference_date = datetime.now()
+    data['yearinclub'] = (reference_date - pd.to_datetime(data['club_joined'])).dt.days // 365
+    return data
