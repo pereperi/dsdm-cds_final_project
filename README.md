@@ -1,5 +1,7 @@
 This repository called "dsdm-cds_final_project" is our repository for our Final Project of Computing for Data Science in BSE. 
+
 ***Members:*** Álvaro Ortiz, Sebastien Boxho, Pere Pericot, Guillem Mirabent Rubinat.
+
 The objective of this project is to build the architecture of a library that is scalable and functional for a Data Science project.
 
 ***Data used:***
