@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error
 
 def train_test_split_data(data):
     '''Split the data into train and test sets.'''
-    X_train, X_test, y_train, y_test = train_test_split(data.drop('target', axis=1), data['target'], test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(data.drop('position', axis=1), data['position'], test_size=0.2)
     return X_train, X_test, y_train, y_test
 
 def train_model(X_train, y_train):
