@@ -16,7 +16,7 @@ def run_pipeline(data_path):
     data = feature_engineering_step2(data)
 
     # Split data into train and test
-    X_train, X_test, y_train, y_test = train_test_split(data.drop('target', axis=1), data['target'], test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split_data(data)
 
     # Train model
     model = train_model(X_train, y_train)
