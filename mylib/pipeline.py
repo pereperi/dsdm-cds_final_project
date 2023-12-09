@@ -23,5 +23,6 @@ def run_pipeline(data_path):
 
     # Evaluate model
     mse = evaluate_model(model, X_test, y_test)
-
+    
+    print('Mean squared error of the model: ', mse)
     return mse
