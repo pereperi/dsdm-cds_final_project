@@ -17,7 +17,7 @@ def run_pipeline(data_path):
     data = calculate_years_in_club(data)
     
         # Preprocess data
-    data = drop_string_columns(data)
+    #data = drop_string_columns(data)
     data = handle_missing_values(data)
 
     # Split data into train and test

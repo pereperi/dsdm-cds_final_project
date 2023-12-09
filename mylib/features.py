@@ -33,6 +33,7 @@ def process_work_rate(data):
 
     data['attacking_wr'] = data['work_rate'].apply(lambda x: wr_converter(x.split('/')[0]))
     data['defensive_wr'] = data['work_rate'].apply(lambda x: wr_converter(x.split('/')[1]))
+    data.drop('work_rate', axis = 1, inplace = True)
     
     return data
 
@@ -40,6 +41,8 @@ def process_work_rate(data):
 # Define the function to calculate years until contract expires
 def calculate_years_until_expiry(data):
     data['years_until_contract_expires'] = data['club_contract_valid_until'] - datetime.today().year
+    data.drop('club_contract_valid_until', axis = 1, inplace = True)
+    
     return data
 
 
@@ -47,6 +50,8 @@ def calculate_years_until_expiry(data):
 def calculate_age(data):
     reference_date = datetime.now()
     data['age'] = (reference_date - pd.to_datetime(data['birthday_date'])).dt.days // 365
+    data.drop('birthday_date', axis = 1, inplace = True)
+    
     return data
 
 
@@ -54,4 +59,6 @@ def calculate_age(data):
 def calculate_years_in_club(data):
     reference_date = datetime.now()
     data['yearinclub'] = (reference_date - pd.to_datetime(data['club_joined'])).dt.days // 365
+    data.drop('club_joined', axis = 1, inplace = True)
+    
     return data
