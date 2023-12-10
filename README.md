@@ -60,13 +60,25 @@ goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's 
 ***Guidelines to scale the library to be able to add:***
 
 1. New preprocessors
-
+- Preprocessors should accept and return Pandas DataFrames or Series.
+- Document any data format assumptions and required library versions.
+- Implement error handling for data inconsistencies or format issues.
+- Write comprehensive unit tests for each preprocessor, covering various data scenarios.
 
 2. Features
-
+- Document any external data or resources used in feature calculation.
+- Include examples demonstrating the feature extraction process.
+- Provide unit tests validating the feature logic and output.
 
 3. Models
-
+- Follow a consistent structure for model classes, including methods for training, predicting, and saving/loading models.
+- Document the model's purpose, underlying algorithms, and any hyperparameters.
+- Ensure models are compatible with the existing data preprocessing and feature engineering pipeline.
 
 4. Metrics
+- Metrics should be implemented as standalone functions or within a metrics class.
+- Ensure compatibility with common data structures like numpy arrays or Pandas DataFrames.
+- Document the mathematical background and interpretation of each metric.
+- Provide examples showcasing the metric calculation in real scenarios.
+- Develop tests to verify the correctness and reliability of the metrics.
 
