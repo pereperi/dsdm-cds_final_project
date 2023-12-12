@@ -28,13 +28,13 @@ def run_pipeline(data_path):
     X_train, X_test, y_train, y_test = train_test_split_data(data)
 
     # Train model
-    #model = train_model_elastic(X_train, y_train)
-    model = train_model_rf(X_train, y_train)
+    model = train_model_elastic(X_train, y_train)
+    #model = train_model_rf(X_train, y_train)
 
     # Evaluate model
-    #mse = evaluate_model_mse(model, X_test, y_test)
-    f1_score = evaluate_model_f1(model, X_test, y_test)
+    mse = evaluate_model_mse(model, X_test, y_test)
+    #f1_score = evaluate_model_f1(model, X_test, y_test) '''tried to also implement f1_score as a metric but didn't manage to make it work properly for now'''
     
     print('Mean squared error of the model: ', mse)
-    print('F1 score of the model: ', f1_score)
+    #print('F1 score of the model: ', f1_score)
     return mse
