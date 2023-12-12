@@ -31,7 +31,9 @@ def run_pipeline(data_path):
     model = train_model_elastic(X_train, y_train)
 
     # Evaluate model
-    mse = evaluate_model(model, X_test, y_test)
+    mse = evaluate_model_mse(model, X_test, y_test)
+    f1_score = evaluate_model_f1(model, X_test, y_test)
     
     print('Mean squared error of the model: ', mse)
+    print('F1 score of the model: ', f1_score)
     return mse

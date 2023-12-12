@@ -75,6 +75,7 @@ goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's 
 - Document the model's purpose, underlying algorithms, and any hyperparameters.
 - Ensure models are compatible with the existing data preprocessing and feature engineering pipeline.
 - The model is contained in its own function, where it's trained. To try different models, create different functions and edit the pipeline to run the new model instead.
+- Follow the same isolation in function for the different metrics.
 
 4. Metrics
 - Metrics should be implemented as standalone functions or within a metrics class.
