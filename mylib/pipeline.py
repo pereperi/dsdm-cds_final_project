@@ -28,10 +28,11 @@ def run_pipeline(data_path):
     X_train, X_test, y_train, y_test = train_test_split_data(data)
 
     # Train model
-    model = train_model_elastic(X_train, y_train)
+    #model = train_model_elastic(X_train, y_train)
+    model = train_model_rf(X_train, y_train)
 
     # Evaluate model
-    mse = evaluate_model_mse(model, X_test, y_test)
+    #mse = evaluate_model_mse(model, X_test, y_test)
     f1_score = evaluate_model_f1(model, X_test, y_test)
     
     print('Mean squared error of the model: ', mse)
