@@ -1,7 +1,7 @@
 
-from .preprocessing import load_data, handle_missing_values, drop_string_columns, numerical_encoder
-from .features import clean_player_traits, clean_body_type, process_work_rate, calculate_years_until_expiry, calculate_age, calculate_years_in_club
-from .model import train_model, evaluate_model, train_test_split_data
+from .preprocessing import *
+from .features import *
+from .model import *
 
 def run_pipeline(data_path):
     '''Run the end-to-end pipeline.'''
@@ -28,7 +28,7 @@ def run_pipeline(data_path):
     X_train, X_test, y_train, y_test = train_test_split_data(data)
 
     # Train model
-    model = train_model(X_train, y_train)
+    model = train_model_elastic(X_train, y_train)
 
     # Evaluate model
     mse = evaluate_model(model, X_test, y_test)

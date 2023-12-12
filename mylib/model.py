@@ -4,15 +4,22 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 from sklearn.metrics import mean_squared_error
+from sklearn.ensemble import RandomForestClassifier
 
 def train_test_split_data(data):
     '''Split the data into train and test sets.'''
     X_train, X_test, y_train, y_test = train_test_split(data.drop('position', axis=1), data['position'], test_size=0.2)
     return X_train, X_test, y_train, y_test
 
-def train_model(X_train, y_train):
+def train_model_elastic(X_train, y_train):
     '''Train an ElasticNet model on the training data.'''
     model = ElasticNet()
+    model.fit(X_train, y_train)
+    return model
+
+def train_model_rf(X_train, y_train):
+    '''Train a Random Forest model on the training data.'''
+    model = RandomForestClassifier()
     model.fit(X_train, y_train)
     return model
 
