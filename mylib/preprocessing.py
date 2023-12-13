@@ -11,8 +11,7 @@ def load_data(file_path):
 def drop_string_columns(data):
     '''Drop string columns from the dataset except for the 'position' column.'''
     non_string_data = data.select_dtypes(exclude=['object'])
-    position_column = data[['position']]
-    return pd.concat([non_string_data, position_column], axis=1)
+    return non_string_data
 
 def handle_missing_values(data):
     '''Handle missing values in the dataset, excluding string columns.'''
