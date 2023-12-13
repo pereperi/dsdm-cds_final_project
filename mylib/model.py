@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
-from sklearn.metrics import mean_squared_error, f1_score, accuracy_score
+from sklearn.metrics import mean_squared_error, f1_score, accuracy_score, roc_auc_score
 from sklearn.ensemble import RandomForestClassifier
 
 def train_test_split_data(data):
@@ -26,11 +26,6 @@ def train_model_rf(X_train, y_train):
     model.fit(X_train, y_train)
     return model
 
-def evaluate_model_mse(y_test, y_pred):
-    '''Evaluate the model using mean squared error.'''
-    mse = mean_squared_error(y_test, y_pred)
-    return mse
-
 def evaluate_model_f1(y_test,y_pred):
     '''Evaluate the model using  F1 score.'''
     f1 = f1_score(y_test, y_pred, average='weighted')
@@ -40,3 +35,8 @@ def evaluate_model_accuracy(y_test,y_pred):
     '''Evaluate the model using  accuracy.'''
     accuracy = accuracy_score(y_test, y_pred)
     return accuracy
+
+def evaluate_model_auc(y_test,y_pred):
+    '''Evaluate the model using  accuracy.'''
+    auc = roc_auc_score(y_test, y_pred,multi_class='ovr')
+    return auc
