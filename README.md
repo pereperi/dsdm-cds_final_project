@@ -57,7 +57,7 @@ goalkeeping_diving, goalkeeping_handling, goalkeeping_positioning: Goalkeeping a
 goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's reflexes and speed.
 
 
-***Guidelines to scale the library to be able to add:***
+***Guidelines for newcomers to add elements to the library:***
 
 1. New preprocessors
 - Preprocessors should accept and return Pandas DataFrames or Series.
@@ -84,3 +84,5 @@ goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's 
 - Provide examples showcasing the metric calculation in real scenarios.
 - Develop tests to verify the correctness and reliability of the metrics.
 
+5. Additionals
+- Should you need to add some functionalities not established anywhere else, please use the file 'utils.py'.
