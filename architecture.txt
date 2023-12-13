@@ -1,10 +1,6 @@
 dsdm-cds_final_project/
 │
 ├── data/                           # Data directory
-│   ├── test                        # Test data folder
-│   │   └── test_ds_fp.csv          # Test dataset file
-│   ├── train                       # Train data folder
-│   │   └── train_ds_fp.csv         # Train dataset file
 │   └── train.csv                   # Train dataset
 │
 ├── mylib/                          # Main library package
