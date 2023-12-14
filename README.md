@@ -85,31 +85,34 @@ dsdm-cds_final_project/
 
 
 ***Guidelines for newcomers to add elements to the library:***
+0. Basics
+- Create a branch of the repository as it is to work on it.
+- Document relevant information in an additional/new .txt file which must be created inside the directory '/documentation' and must as well be appropriately named.
+- Any relevant addition/modification for the following sections must be properly documented and justified in its own .txt file as described.
+- You can use the notebook 'pipeline_caller.ipynb' to test your advances, but don't merge it with the main unless relevant explanations on the markdown sections are added to it.
+- Please do merge the rest of the files when your additions are done.
 
 1. New preprocessors
 - Preprocessors should accept and return Pandas DataFrames or Series.
 - Document any data format assumptions and required library versions.
 - Implement error handling for data inconsistencies or format issues.
-- Write comprehensive unit tests for each preprocessor, covering various data scenarios.
+- Write comprehensive unit tests for the added preprocessors, covering various data scenarios.
 
 2. Features
 - Document any external data or resources used in feature calculation.
-- Include examples demonstrating the feature extraction process.
-- Provide unit tests validating the feature logic and output.
+- Provide unit tests validating the new feature extraction.
 
 3. Models
-- Follow a consistent structure for model classes, including methods for training, predicting, and saving/loading models.
-- Document the model's purpose, underlying algorithms, and any hyperparameters.
 - Ensure models are compatible with the existing data preprocessing and feature engineering pipeline.
-- The model is contained in its own function, where it's trained. To try different models, create different functions and edit the pipeline to run the new model instead.
+- Follow a consistent structure for new/alternate models. Each model should have its own function and its own 'elif' in the pipeline last 'for' loop.
+- Document the model's purpose and its mathematical rationale and explanation.
+- Add the relevant hyperparameters to 'hyperparameters_GridSearch' in model.py.
+- The model must be contained in its own function, where it's trained. To try different models, separately or at once, make sure to use the notebook.
 - Follow the same isolation in function for the different metrics.
 
 4. Metrics
-- Metrics should be implemented as standalone functions or within a metrics class.
-- Ensure compatibility with common data structures like numpy arrays or Pandas DataFrames.
-- Document the mathematical background and interpretation of each metric.
-- Provide examples showcasing the metric calculation in real scenarios.
-- Develop tests to verify the correctness and reliability of the metrics.
+- Metrics should be implemented within their designed function in 'pipeline.py', 'evaluate_model'.
+- Document the mathematical background and interpretation for each new metric.
 
 5. Additionals
 - Should you need to add some functionalities not established anywhere else, please use the file 'utils.py'.
