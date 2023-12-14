@@ -4,15 +4,14 @@ dsdm-cds_final_project/
 │   └── train.csv                   # Train dataset
 │
 ├── mylib/                          # Main library package
-│   ├── __init__.py                 # Initializes the mylib package
-│   ├── features.py                 # Module for feature related functions
-│   ├── model.py                    # Module for model related functions
-│   ├── pipeline.py                 # Module for pipeline functions
-│   ├── preprocessing.py            # Module for preprocessing functions
-│   └── utils.py                    # Utility functions
-│
-├── notebooks/                      # Jupyter notebooks
-│   └── Position_prediction.ipynb   # Notebook for position prediction
+|   ├── __init__.py
+|   ├── position_prediction/        # Library for position prediction
+│       ├── __init__.py             # Initializes the mylib package
+│       ├── features.py             # Module for feature related functions
+│       ├── model.py                # Module for model related functions
+│       ├── pipeline.py             # Module for pipeline functions
+│       ├── preprocessing.py        # Module for preprocessing functions
+│       └── utils.py                # Utility functions
 │
 ├── tests/                          # Test cases
 │   ├── test_feature_engineering.py # Test for feature engineering
@@ -22,4 +21,3 @@ dsdm-cds_final_project/
 ├── README.md                       # README file
 ├── requirements.txt                # List of dependencies
 └── setup.py                        # Setup script for the library
-

@@ -56,6 +56,33 @@ goalkeeping_diving, goalkeeping_handling, goalkeeping_positioning: Goalkeeping a
 
 goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's reflexes and speed.
 
+***Library Arquitecture:***
+<pre>
+dsdm-cds_final_project/
+│
+├── data/                           # Data directory
+│   └── train.csv                   # Train dataset
+│
+├── mylib/                          # Main library package
+|   ├── __init__.py
+|   ├── position_prediction/        # Library for position prediction
+│       ├── __init__.py             # Initializes the mylib package
+│       ├── features.py             # Module for feature related functions
+│       ├── model.py                # Module for model related functions
+│       ├── pipeline.py             # Module for pipeline functions
+│       ├── preprocessing.py        # Module for preprocessing functions
+│       └── utils.py                # Utility functions
+│
+├── tests/                          # Test cases
+│   ├── test_feature_engineering.py # Test for feature engineering
+│   └── test_preprocessing.py       # Test for preprocessing
+│
+├── pipeline_caller.ipynb           # Main pipeline caller notebook
+├── README.md                       # README file
+├── requirements.txt                # List of dependencies
+└── setup.py                        # Setup script for the library
+</pre>
+
 
 ***Guidelines for newcomers to add elements to the library:***
 
