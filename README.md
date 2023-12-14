@@ -116,3 +116,4 @@ dsdm-cds_final_project/
 
 5. Additionals
 - Should you need to add some functionalities not established anywhere else, please use the file 'utils.py'.
+- Make sure to properly implement the added 'utils' to the pipline and to make sure that the call from the notebook works correctly afterwards.
