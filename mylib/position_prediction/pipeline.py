@@ -4,7 +4,7 @@ from .preprocessing import *
 from .features import *
 from .model import *
 
-def run_pipeline(data_path, models = ['rf', 'logistic', 'svc'],use_grid_search = False, use_feature_selection = False, use_SMOTE = True):
+def run_pipeline(data_path, models = ['logistic'],use_grid_search = False, use_feature_selection = False, use_SMOTE = False):
     '''Run the end-to-end pipeline.'''
     # Load data
     data = load_data(data_path)
@@ -42,8 +42,6 @@ def run_pipeline(data_path, models = ['rf', 'logistic', 'svc'],use_grid_search =
             smote = SMOTE(sampling_strategy='auto', random_state=42)
             X_train, y_train = smote.fit_resample(X_train, y_train)
 
-    # TODO: Feature selection
-
     print("X_train shape: ", X_train.shape)
 
     def evaluate_model(model, X_test, y_test):
@@ -59,12 +57,30 @@ def run_pipeline(data_path, models = ['rf', 'logistic', 'svc'],use_grid_search =
     for m_name in models:
         if m_name == 'rf':
             model = train_model_rf(X_train, y_train, use_grid_search)
-            evaluate_model(model, X_test, y_test)
+            if use_feature_selection:
+                selected_features = recursive_feature_seection(X_train, y_train, model)
+                model.fit(X_train[selected_features], y_train)
+                evaluate_model(model, X_test[selected_features], y_test)
+            else:
+                model.fit(X_train, y_train)
+                evaluate_model(model, X_test, y_test)
         elif m_name == 'logistic':
             model = train_model_logistic(X_train, y_train, use_grid_search)
-            evaluate_model(model, X_test, y_test)
+            if use_feature_selection:
+                selected_features = recursive_feature_seection(X_train, y_train, model)
+                model.fit(X_train[selected_features], y_train)
+                evaluate_model(model, X_test[selected_features], y_test)
+            else:
+                model.fit(X_train, y_train)
+                evaluate_model(model, X_test, y_test)
         elif m_name == 'svc':
             model = train_model_svc(X_train, y_train, use_grid_search)
-            evaluate_model(model, X_test, y_test)
+            if use_feature_selection:
+                selected_features = recursive_feature_seection(X_train, y_train, model)
+                model.fit(X_train[selected_features], y_train)
+                evaluate_model(model, X_test[selected_features], y_test)
+            else:
+                model.fit(X_train, y_train)
+                evaluate_model(model, X_test, y_test)
         else:
             print("Model not supported. Please use one of the following models: rf, elastic, logistic, svc")

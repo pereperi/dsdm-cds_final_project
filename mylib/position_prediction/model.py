@@ -8,11 +8,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
+from sklearn.feature_selection import RFECV
 
 def train_test_split_data(data):
     '''Split the data into train and test sets.'''
     y = data['position']
     data.drop('position',axis=1,inplace=True)
+    data.drop('id',axis=1,inplace=True)
     X = data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     return X_train, X_test, y_train, y_test
@@ -20,37 +22,32 @@ def train_test_split_data(data):
 def train_model_rf(X_train, y_train, use_grid_search=False):
     '''Train a Random Forest model on the training data.'''
     if use_grid_search:
-        print("Hyperparameter tuning using Grid Search")
         hyperparameters = hyperparameters_GridSearch(X_train, y_train, RandomForestClassifier())
         model = RandomForestClassifier(**hyperparameters)
     else:
         model = RandomForestClassifier(bootstrap=False, min_samples_split=5)
     
-    model.fit(X_train, y_train)
     return model
 
 def train_model_logistic(X_train, y_train, use_grid_search=False):
     '''Train a Logistic Regression model on the training data.'''
     if use_grid_search:
-        print("Hyperparameter tuning using Grid Search")
         hyperparameters = hyperparameters_GridSearch(X_train, y_train, LogisticRegression())
         model = LogisticRegression(**hyperparameters)
     else:
-        model = LogisticRegression(C=1, max_iter=200, penalty='l1', solver='liblinear')
+        #model = LogisticRegression(C=1, max_iter=200, penalty='l1', solver='liblinear')
+        model = LogisticRegression(max_iter=5000,random_state=42)
     
-    model.fit(X_train, y_train)
     return model
 
 def train_model_svc(X_train, y_train, use_grid_search=False):
     '''Train a SVC model on the training data.'''
     if use_grid_search:
-        print("Hyperparameter tuning using Grid Search")
         hyperparameters = hyperparameters_GridSearch(X_train, y_train, SVC())
         model = SVC(**hyperparameters)
     else:
         model = SVC()
     
-    model.fit(X_train, y_train)
     return model
 
 def evaluate_model_f1(y_test,y_pred):
@@ -88,6 +85,20 @@ def hyperparameters_GridSearch(X_train, y_train, model):
     grid_search = GridSearchCV(estimator=model, param_grid=param_grid,cv=5,scoring='f1_weighted',verbose=1,n_jobs=-1)
     grid_search.fit(X_train, y_train)
     grid_search.best_params_
+    print("Hyperparameter tuning using Grid Search: ",model.__class__.__name__)
     print("Best Hyperparameters:", grid_search.best_params_)
     return grid_search.best_params_
 
+def recursive_feature_seection(X_train, y_train, model):
+    '''Perform recursive feature selection.'''
+    # Use sample of train to speed up the process
+    df_train = pd.concat([X_train, y_train], axis=1)
+    df_train_sampled = df_train.sample(frac=0.3, random_state=42)
+    X_train = df_train_sampled.drop('position', axis=1)
+    y_train = df_train_sampled['position']
+    rfecv = RFECV(model, step=1, cv=5)
+    rfecv = rfecv.fit(X_train, y_train)
+    selected_features = X_train.columns[rfecv.support_]
+    print("Feature selection using RFECV: ",model.__class__.__name__)
+    print("Selected features:", selected_features)
+    return selected_features
