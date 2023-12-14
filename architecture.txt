@@ -13,7 +13,7 @@ dsdm-cds_final_project/
 │       ├── preprocessing.py        # Module for preprocessing functions
 │       └── utils.py                # Utility functions
 │
-├── tests/                          # Test cases
+├── tests_methods/                          # Test cases
 │   ├── test_feature_engineering.py # Test for feature engineering
 │   └── test_preprocessing.py       # Test for preprocessing
 │
