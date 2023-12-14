@@ -56,7 +56,7 @@ goalkeeping_diving, goalkeeping_handling, goalkeeping_positioning: Goalkeeping a
 
 goalkeeping_reflexes, goalkeeping_speed: Attributes representing a goalkeeper's reflexes and speed.
 
-***Library Arquitecture:***
+***Library Architecture:***
 <pre>
 dsdm-cds_final_project/
 │

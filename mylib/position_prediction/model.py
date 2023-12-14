@@ -69,7 +69,7 @@ def hyperparameters_GridSearch(X_train, y_train, model):
     '''Perform hyperparameter tuning using Grid Search.'''
     random_forest_param_grid = {'n_estimators': [50, 100],'max_depth': [None, 10],'min_samples_split': [2, 5, 10],'min_samples_leaf': [1, 3],'bootstrap': [True, False]}
     svc_param_grid = {'C': [0.1, 1],'kernel': ['linear', 'poly'],'gamma': ['scale'],'degree': [1, 2]}
-    logistic_regression_param_grid = {'penalty': ['l1', 'l2'],'C': [0.1, 1],'solver': ['liblinear', 'saga'],'max_iter': [200, 300]}
+    logistic_regression_param_grid = {'penalty': ['l1', 'l2'],'C': [0.1, 1],'solver': ['liblinear', 'saga'],'max_iter': [200, 500]}
 
     if model.__class__.__name__ == 'RandomForestClassifier':
         param_grid = random_forest_param_grid
