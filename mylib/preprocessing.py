@@ -21,7 +21,8 @@ def handle_missing_values(data):
     string_data = data.select_dtypes(include=['object'])
     non_string_data = data.select_dtypes(exclude=['object'])
     
-    non_string_data_filled = non_string_data.fillna(non_string_data.median())
+    # Fill missing values in the non-string columns with KNN
+    non_string_data_filled = column_fill_KNN(non_string_data, non_string_data.columns)
     
     data_filled = pd.concat([non_string_data_filled, string_data], axis=1)
     
