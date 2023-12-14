@@ -59,8 +59,8 @@ def run_pipeline(data_path, models = ['logistic'],use_grid_search = False, use_f
             model = train_model_rf(X_train, y_train, use_grid_search)
             if use_feature_selection:
                 selected_features = recursive_feature_seection(X_train, y_train, model)
-                model.fit(X_train[selected_features], y_train)
-                evaluate_model(model, X_test[selected_features], y_test)
+                model.fit(X_train[selected_features].copy(), y_train)
+                evaluate_model(model, X_test[selected_features].copy(), y_test)
             else:
                 model.fit(X_train, y_train)
                 evaluate_model(model, X_test, y_test)
@@ -68,19 +68,20 @@ def run_pipeline(data_path, models = ['logistic'],use_grid_search = False, use_f
             model = train_model_logistic(X_train, y_train, use_grid_search)
             if use_feature_selection:
                 selected_features = recursive_feature_seection(X_train, y_train, model)
-                model.fit(X_train[selected_features], y_train)
-                evaluate_model(model, X_test[selected_features], y_test)
+                model.fit(X_train[selected_features].copy(), y_train)
+                evaluate_model(model, X_test[selected_features].copy(), y_test)
             else:
                 model.fit(X_train, y_train)
                 evaluate_model(model, X_test, y_test)
         elif m_name == 'svc':
             model = train_model_svc(X_train, y_train, use_grid_search)
             if use_feature_selection:
-                selected_features = recursive_feature_seection(X_train, y_train, model)
-                model.fit(X_train[selected_features], y_train)
-                evaluate_model(model, X_test[selected_features], y_test)
+                # Feature selection is not supported for SVC
+                #selected_features = recursive_feature_seection(X_train, y_train, model)
+                model.fit(X_train, y_train)
+                evaluate_model(model, X_test, y_test)
             else:
                 model.fit(X_train, y_train)
                 evaluate_model(model, X_test, y_test)
         else:
-            print("Model not supported. Please use one of the following models: rf, elastic, logistic, svc")
+            print("Model not supported. Please use one of the following models: rf, logistic, svc")

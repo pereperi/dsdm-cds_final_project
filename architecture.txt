@@ -5,7 +5,7 @@ dsdm-cds_final_project/
 │
 ├── mylib/                          # Main library package
 |   ├── __init__.py
-|   ├── position_prediction/        # Library for position prediction
+|   └── position_prediction/        # Library for position prediction
 │       ├── __init__.py             # Initializes the mylib package
 │       ├── features.py             # Module for feature related functions
 │       ├── model.py                # Module for model related functions

@@ -68,7 +68,7 @@ def evaluate_model_auc(y_test,y_pred):
 def hyperparameters_GridSearch(X_train, y_train, model):
     '''Perform hyperparameter tuning using Grid Search.'''
     random_forest_param_grid = {'n_estimators': [50, 100],'max_depth': [None, 10],'min_samples_split': [2, 5, 10],'min_samples_leaf': [1, 3],'bootstrap': [True, False]}
-    svc_param_grid = {'C': [0.1, 1],'kernel': ['linear', 'poly'],'gamma': ['scale', 'auto'],'degree': [1, 2]}
+    svc_param_grid = {'C': [0.1, 1],'kernel': ['linear', 'poly'],'gamma': ['scale'],'degree': [1, 2]}
     logistic_regression_param_grid = {'penalty': ['l1', 'l2'],'C': [0.1, 1],'solver': ['liblinear', 'saga'],'max_iter': [200, 300]}
 
     if model.__class__.__name__ == 'RandomForestClassifier':
@@ -100,5 +100,5 @@ def recursive_feature_seection(X_train, y_train, model):
     rfecv = rfecv.fit(X_train, y_train)
     selected_features = X_train.columns[rfecv.support_]
     print("Feature selection using RFECV: ",model.__class__.__name__)
-    print("Selected features:", selected_features)
+    #print("Selected features:", selected_features)
     return selected_features

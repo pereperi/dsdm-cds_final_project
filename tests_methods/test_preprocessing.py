@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from mylib.preprocessing import *
+from mylib.position_prediction.preprocessing import *
 
 # Test that the functions from preprocessing.py work as expected
 def test_drop_string_columns():

@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from mylib.features import *
+from mylib.position_prediction.features import *
 
 # Test that the functions from features.py work as expected
 def test_process_work_rate():
