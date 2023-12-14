@@ -21,3 +21,4 @@ dsdm-cds_final_project/
 ├── README.md                       # README file
 ├── requirements.txt                # List of dependencies
 └── setup.py                        # Setup script for the library
+└── setup.cfg                        
