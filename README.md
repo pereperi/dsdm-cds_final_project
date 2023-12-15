@@ -109,9 +109,9 @@ dsdm-cds_final_project/
 - Document the model's purpose and its mathematical rationale and explanation.
 - Add the relevant hyperparameters to 'hyperparameters_GridSearch' in model.py.
 - The model must be contained in its own function, where it's trained. To try different models, separately or at once, make sure to use the notebook.
-- Follow the same isolation in function for the different metrics.
 
 4. Metrics
+- Follow the same isolation in functions for the different metrics.
 - Metrics should be implemented within their designed function in 'pipeline.py', 'evaluate_model'.
 - Document the mathematical background and interpretation for each new metric.
 
