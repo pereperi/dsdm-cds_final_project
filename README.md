@@ -84,7 +84,8 @@ dsdm-cds_final_project/
 </pre>
 
 
-***Guidelines for newcomers to add elements to the library:***
+***Guidelines for newcomers to add elements to the library:***  
+
 0. Basics
 - Create a branch of the repository as it is to work on it.
 - Document relevant information in an additional/new .txt file which must be created inside the directory '/documentation' and must as well be appropriately named.
